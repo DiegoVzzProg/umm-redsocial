@@ -1,7 +1,7 @@
 <form action="{{ route(name: 'desencriptar', parameters: ['key' => $encrypted]) }}" method="post"
-    class="shadow-lg rounded bg-[#E9ECEF] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-start gap-[10px]">
+    class="shadow-lg text-[#7A7D7D] rounded bg-[#E9ECEF] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-start gap-[10px]">
     @csrf
-    <p class="text-[2rem] w-full text-center p-5 font-semibold pointer-events-none">
+    <p class="text-[2rem] w-full text-center p-5 font-semibold pointer-events-none text-[#565254]">
         Bienvenido
     </p>
     <div class="flex flex-col w-full max-w-[400px]">
@@ -9,7 +9,7 @@
             <div class="flex items-center bg-[#CED4DA] min-h-full px-[10px]">
                 <i class="bi bi-person-circle"></i>
             </div>
-            <input type="text" name="usuario" id="app_header_input_search" autocomplete="off" wire:model.lazy="usuario"
+            <input type="text" name="usuario" autocomplete="off" wire:model.lazy="usuario"
                 class="bg-[#CED4DA] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Usuario">
         </div>
@@ -22,8 +22,7 @@
             <div class="flex items-center bg-[#CED4DA] min-h-full px-[10px]">
                 <i class="bi bi-lock-fill"></i>
             </div>
-            <input type="text" name="contraseña" id="app_header_input_search" autocomplete="off"
-                wire:model.lazy="contraseña"
+            <input type="text" name="contraseña" autocomplete="off" wire:model.lazy="contraseña"
                 class="bg-[#CED4DA] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Contraseña">
         </div>

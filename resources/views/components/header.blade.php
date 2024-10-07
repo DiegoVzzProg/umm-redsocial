@@ -1,4 +1,11 @@
 <header id="app_header_component"
-    class="w-full bd items-center relative lg:max-w-[300px] app-header lg:h-screen p-5 flex lg:flex-col lg:items-start gap-[5px]">
+    class="w-full bg-[#E9ECEF] text-[#565254] shadow max-w-[250px] p-5 flex flex-col items-start justify-start">
+    <div class="flex py-[10px]">
+        <p class="font-semibold">
+            Red Social
+        </p>
+    </div>
+    <nav class="flex w-full h-full flex-col">
 
+    </nav>
 </header>

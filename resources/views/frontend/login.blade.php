@@ -35,7 +35,7 @@
     class="flex gap-[20px] flex-col justify-center items-center lg:flex-row lg:items-center lg:justify-between py-5 px-5 lg:px-[50px]">
     <div class="w-full flex flex-col justify-center max-w-[800px] max-[1024px]:max-w-[600px] gap-[10px]">
         <img src="{{ asset(path: 'assets/img/umm_logo.png') }}" alt="" srcset="" class="w-full">
-        <p class="max-[1024px]:hidden text-[.9rem]">
+        <p class="max-[1024px]:hidden text-[.9rem] text-[#7A7D7D]">
             Un espacio donde cada conversación es el inicio de algo grande, y cada conexión crea un puente hacia nuevas
             posibilidades y aventuras.
         </p>
