@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ControllerLista extends Controller
 {
+
+    public static function limpiar_response_json($response)
+    {
+        return preg_replace('/^.*?\[/', '[', $response);
+    }
+
     public function fn_inicio_sesion(Request $request)
     {
         $request->validate([
@@ -29,6 +36,15 @@ class ControllerLista extends Controller
             return redirect()->route('inicio')->with('data', ['mensaje' => '']);
         } else {
             return redirect()->route('login')->with('data', ['mensaje' => 'Usuario y/o contraseña incorrecta']);
+        }
+    }
+
+    public static function sp_obtener_info_usuario_estadisticas($id_usuario)
+    {
+        try {
+            return DB::select('CALL sp_obtener_info_usuario_estadisticas(?)', [$id_usuario]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'No se pudo obtener la información.'], 500);
         }
     }
 }
