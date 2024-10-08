@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Crypt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class ControllerGeneral extends Controller
 {

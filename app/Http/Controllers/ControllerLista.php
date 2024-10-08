@@ -11,21 +11,24 @@ class ControllerLista extends Controller
     {
         $request->validate([
             'usuario' => 'required|max:50',
-            'contraseña' => 'required|string|max:20|min:13',
+            'contraseña' => 'required|string|max:20|min:10',
         ], [
             'usuario.required' => 'Este campo es obligatorio.',
             'contraseña.required' => 'Este campo es obligatorio.',
             'usuario.max' => 'Sólo permite un máximo de 50 caracteres.',
             'contraseña.max' => 'Sólo permite un máximo de 20 caracteres.',
-            'contraseña.min' => 'Sólo permite un mínimo de 13 caracteres.'
+            'contraseña.min' => 'Sólo permite un mínimo de 10 caracteres.'
         ]);
 
         $usuario = Usuario::where('usuario', $request->input('usuario'))->first();
 
         if ($usuario && $usuario->contraseña == $request->input('contraseña')) {
-            return redirect()->route('inicio')->with('data', ['message' => '', 'status' => 200]);
+
+            session()->put('id_usuario', $usuario->id_usuario);
+
+            return redirect()->route('inicio')->with('data', ['mensaje' => '']);
         } else {
-            return redirect()->route('login')->with('data', ['message' => 'Credenciales Incorrectas', 'status' => 599]);
+            return redirect()->route('login')->with('data', ['mensaje' => 'Usuario y/o contraseña incorrecta']);
         }
     }
 }
