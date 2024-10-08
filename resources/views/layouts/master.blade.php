@@ -10,15 +10,18 @@
 
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/css/master.css')
 
     <title>@yield('title')</title>
-
     @livewireStyles
 </head>
 
 <body class="flex">
+    <livewire:header />
 
-    @yield('content')
+    <main class="w-full h-screen min-h-screen p-5 overflow-y-auto">
+        @yield('content')
+    </main>
 
     @livewireScripts
 </body>
