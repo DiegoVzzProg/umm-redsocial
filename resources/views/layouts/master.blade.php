@@ -16,10 +16,12 @@
     @livewireStyles
 </head>
 
-<body class="flex">
+<body class="flex max-[768px]:flex-col">
     <livewire:header />
 
-    <main class="w-full h-screen min-h-screen p-5 overflow-y-auto">
+    <main
+        class="w-full h-auto p-5 md:min-h-screen lg:min-h-screen lg:h-screen md:h-screen md:overflow-y-auto lg:overflow-y-auto"
+        style="content-visibility: auto;">
         @yield('content')
     </main>
 
