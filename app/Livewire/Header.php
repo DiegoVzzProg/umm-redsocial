@@ -16,13 +16,12 @@ class Header extends Component
     public function render()
     {
         $id_usuario = session()->has('id_usuario');
-        $response = ControllerLista::sp_obtener_info_usuario_estadisticas($id_usuario);
+        $response = Usuario::where('id_usuario', $id_usuario)->first();
 
-        $publicaciones = $this->simplificar_num($response[0]->publicaciones);
-        $seguidores = $this->simplificar_num($response[0]->seguidores);
-        $sigue_a = $this->simplificar_num($response[0]->sigue_a);
-
-        $imagen_perfil = Usuario::where('id_usuario', $id_usuario)->first()->foto_perfil;
+        $publicaciones = $this->simplificar_num($response->publicaciones);
+        $seguidores = $this->simplificar_num($response->seguidores);
+        $sigue_a = $this->simplificar_num($response->sigue_a);
+        $imagen_perfil = $response->foto_perfil;
 
         return view('livewire.header', compact('publicaciones', 'seguidores', 'sigue_a', 'imagen_perfil'));
     }

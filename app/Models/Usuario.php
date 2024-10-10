@@ -26,6 +26,8 @@ class Usuario extends Model
         'rol',
         'seguidores',
         'sigue_a',
-        'token_verificacion'
+        'token_verificacion',
+        'foto_perfil',
+        'publicaciones'
     ];
 }

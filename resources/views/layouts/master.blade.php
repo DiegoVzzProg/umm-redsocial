@@ -12,7 +12,7 @@
     @vite('resources/css/app.css')
     @vite('resources/css/master.css')
 
-    <title>@yield('title')</title>
+    <title>Nodify UMM</title>
     @livewireStyles
 </head>
 
