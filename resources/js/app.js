@@ -2,11 +2,11 @@ import './bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 // import 'splidejs/dist/css/splide.min.css';
 
-import Splide from '@splidejs/splide';
-import Alpine from 'alpinejs';
+// import Splide from '@splidejs/splide';
+// import Alpine from 'alpinejs';
 
-window.Alpine = Alpine;
+// window.Alpine = Alpine;
 
-Alpine.start();
+// Alpine.start();
 
-window.Splide = Splide;
+// window.Splide = Splide;

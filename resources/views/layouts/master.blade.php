@@ -20,8 +20,7 @@
     <livewire:header />
 
     <main
-        class="w-full h-auto p-3 max-[768px]:p-2 pb-0 md:min-h-screen lg:min-h-screen lg:h-screen md:h-screen md:overflow-y-auto lg:overflow-y-auto"
-        style="content-visibility: auto;">
+        class="w-full h-auto p-3 max-[768px]:p-2 pb-0 md:min-h-screen lg:min-h-screen lg:h-screen md:h-screen">
         @yield('content')
     </main>
 

@@ -31,7 +31,7 @@
                     class="w-full outline-none pe-[1rem] bg-[white] app-transition-all placeholder:opacity-[.6]"
                     id="" placeholder="Buscar">
             </div>
-            <nav class="flex items-center justify-end w-full">
+            <nav class="flex items-center justify-end w-full" x-data="{ menu: false }">
 
                 <div class="flex max-[768px]:hidden items-center justify-center gap-3">
                     @foreach ($opcion_icon as $item)
@@ -42,7 +42,7 @@
                     @endforeach
                 </div>
                 <div class="hidden max-[768px]:flex">
-                    <button>
+                    <button @click="menu = !menu">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
@@ -53,10 +53,17 @@
                         </svg>
                     </button>
                 </div>
+                <div class="hidden max-[768px]:flex fixed w-full h-full top-0 left-0 bg-transparent flex p-5"
+                    x-show="menu">
+                    <div class="w-full h-full bd">
+
+                    </div>
+                </div>
             </nav>
         </div>
-        <article class="flex max-[1200px]:flex-col-reverse w-full h-full gap-2">
-            <section class="flex flex-col w-full bg-[#F8F9FA] py-5 px-5 rounded-[5px] gap-3">
+        <article class="flex max-[1200px]:flex-col-reverse w-full h-[calc(100vh-100px)] gap-2">
+            <section
+                class="flex flex-col w-full bg-[#F8F9FA] py-5 px-5 rounded-[5px] gap-4 overflow-y-auto app-ocultar-scroll">
                 <h4 class="font-bold text-[1rem] font-family-nunito pointer-events-none">
                     Contenido
                 </h4>
@@ -72,11 +79,65 @@
                             placeholder="¿En que estas pensando?"></textarea>
                     </div>
                 </div>
-                <div class="flex w-full">
-
+                <div class="flex w-full" style="content-visibility: auto;">
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
+                    a <br />
                 </div>
             </section>
-            <section class="flex w-full bg-[#F8F9FA] max-w-[300px]  max-[1200px]:max-w-full py-5 px-5 rounded-[5px]">
+            <section
+                class="flex w-full bg-[#F8F9FA] max-w-[300px]  max-[1200px]:max-w-full py-5 max-[768px]:py-2 px-5 rounded-[5px]">
                 <h4 class="font-bold text-[1rem] font-family-nunito pointer-events-none">
                     Sugerencias
                 </h4>
