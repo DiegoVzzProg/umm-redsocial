@@ -18,12 +18,16 @@ class Header extends Component
         $id_usuario = session()->has('id_usuario');
         $response = Usuario::where('id_usuario', $id_usuario)->first();
 
-        $publicaciones = $this->simplificar_num($response->publicaciones);
-        $seguidores = $this->simplificar_num($response->seguidores);
-        $sigue_a = $this->simplificar_num($response->sigue_a);
         $imagen_perfil = $response->foto_perfil;
+        $usuario = $response->usuario;
 
-        return view('livewire.header', compact('publicaciones', 'seguidores', 'sigue_a', 'imagen_perfil'));
+        $estadisticas = [
+            ["titulo" => "publicaciones", "valor" => $this->simplificar_num($response->publicaciones)],
+            ["titulo" => "seguidores", "valor" => $this->simplificar_num($response->seguidores)],
+            ["titulo" => "sigues", "valor" => $this->simplificar_num($response->sigue_a)],
+        ];
+
+        return view('livewire.header', compact('imagen_perfil', 'usuario', 'estadisticas'));
     }
 
     public function simplificar_num($numero)

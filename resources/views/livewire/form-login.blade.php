@@ -32,7 +32,7 @@
     </div>
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">
         <button type="submit"
-            class="bg-[IndianRed] text-[white] twine-transition-all md:opacity-[.7] lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
+            class="bg-[IndianRed] text-[white] app-transition-all md:opacity-[.7] lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
             Iniciar sesión
         </button>
     </div>
@@ -43,7 +43,7 @@
 
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">
         <a href=""
-            class="bg-[#3498db] text-[white] twine-transition-all md:opacity-[.7] text-center lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
+            class="bg-[#3498db] text-[white] app-transition-all md:opacity-[.7] text-center lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
             Iniciar sesión con Office365
         </a>
     </div>

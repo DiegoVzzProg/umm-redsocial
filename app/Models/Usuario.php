@@ -28,6 +28,7 @@ class Usuario extends Model
         'sigue_a',
         'token_verificacion',
         'foto_perfil',
-        'publicaciones'
+        'publicaciones',
+        'matricula'
     ];
 }

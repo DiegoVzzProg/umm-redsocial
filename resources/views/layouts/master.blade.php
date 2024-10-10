@@ -11,16 +11,16 @@
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
     @vite('resources/css/master.css')
-
+    @yield('css')
     <title>Nodify UMM</title>
     @livewireStyles
 </head>
 
-<body class="flex max-[768px]:flex-col">
+<body class="flex max-[768px]:flex-col animate-fade-in">
     <livewire:header />
 
     <main
-        class="w-full h-auto p-5 md:min-h-screen lg:min-h-screen lg:h-screen md:h-screen md:overflow-y-auto lg:overflow-y-auto"
+        class="w-full h-auto p-3 max-[768px]:p-2 pb-0 md:min-h-screen lg:min-h-screen lg:h-screen md:h-screen md:overflow-y-auto lg:overflow-y-auto"
         style="content-visibility: auto;">
         @yield('content')
     </main>

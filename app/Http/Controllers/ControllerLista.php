@@ -18,13 +18,12 @@ class ControllerLista extends Controller
     {
         $request->validate([
             'usuario' => 'required|max:50',
-            'contraseña' => 'required|string|max:20|min:10',
+            'contraseña' => 'required|string|max:20',
         ], [
             'usuario.required' => 'Este campo es obligatorio.',
             'contraseña.required' => 'Este campo es obligatorio.',
             'usuario.max' => 'Sólo permite un máximo de 50 caracteres.',
-            'contraseña.max' => 'Sólo permite un máximo de 20 caracteres.',
-            'contraseña.min' => 'Sólo permite un mínimo de 10 caracteres.'
+            'contraseña.max' => 'Sólo permite un máximo de 20 caracteres.'
         ]);
 
         $usuario = Usuario::where('usuario', $request->input('usuario'))->first();
