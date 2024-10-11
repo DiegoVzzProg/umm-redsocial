@@ -1,5 +1,5 @@
 <header id="app_header" class="flex items-center bg-[#212121] p-5 shadow-inner justify-between">
-    <h4 class="font-semibold tracking-widest text-[1rem]  max-[768px]:hidden">
+    <h4 class="font-semibold tracking-widest text-[1rem]  max-[768px]:hidden" wire:click="salir">
         NODIFY
     </h4>
     <div class="w-full max-w-[400px] max-[768px]:max-w-[200px] relative flex rounded-[3px] overflow-hidden">
