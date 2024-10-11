@@ -1,44 +1,54 @@
-<header id="app_header_nodify"
-    class="w-full flex-col max-[768px]:flex-row gap-[20px] max-[768px]:hidden max-[768px]:shadow-none shadow bg-[#f1f4f6] flex p-5 max-[1024px]:p-2 max-w-[350px] max-[768px]:max-w-full max-[1024px]:max-w-[250px]">
-    <div class="flex items-center py-[10px] w-full">
-        Nodify UMM
+<header id="app_header" class="flex items-center bg-[#212121] p-5 shadow-inner justify-between">
+    <h4 class="font-semibold tracking-widest text-[1rem]  max-[768px]:hidden">
+        NODIFY
+    </h4>
+    <div class="w-full max-w-[400px] max-[768px]:max-w-[200px] relative flex rounded-[3px] overflow-hidden">
+        <span class="flex items-center bg-[#343A40] justify-center px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="translate-x-[3px]" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                <path d="M21 21l-6 -6" />
+            </svg>
+        </span>
+        <input type="text" name="" id=""
+            class="outline-none bg-[#343A40] w-full py-2 px-3 placeholder:opacity-50" placeholder="Buscar">
     </div>
-    <div class="flex h-full max-h-[220px] items-center justify-between flex-col gap-[20px] max-[768px]:hidden">
-        <a href="" class="flex w-full max-w-[100px] h-full max-h-[100px] rounded-full overflow-hidden">
-            <img src="{{ asset(path: 'assets/img/imgs_perfil/' . $imagen_perfil) }}" alt="" srcset="">
-        </a>
-        <p class="text-[.85rem]">
-            {{ $usuario }}
-        </p>
-        <div class="flex w-full">
-            @foreach ($estadisticas as $item)
-                <div class="flex flex-col items-center justify-center w-full">
-                    <span class="text-[.85rem] font-semibold">
-                        {{ $item['valor'] }}
-                    </span>
-                    <span class="max-[1024px]:text-[.7rem] text-[.85rem]">
-                        {{ $item['titulo'] }}
-                    </span>
+    <nav class="flex justify-between gap-2" x-data="{ open: false }">
+        @foreach ($opcion_icon as $item)
+            <a href=""
+                class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100 max-[768px]:hidden">
+                {!! $item !!}
+            </a>
+        @endforeach
+        <button @click="open = true"
+            class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#e9ecef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 6l16 0" />
+                <path d="M4 12l16 0" />
+                <path d="M4 18l16 0" />
+            </svg>
+        </button>
+        <div class="fixed top-0 right-0 flex items-center justify-center w-full max-w-[500px] h-full p-5 z-[9999]"
+            x-show="open">
+            <div class="flex flex-col w-full h-full bg-[#1c1b1b] rounded ">
+                <div class="flex justify-end">
+                    <button @click="open = false"
+                        class="p-3 rounded-full app-transition-all opacity-60 hover:opacity-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="#e9ecef" class="icon icon-tabler icons-tabler-filled icon-tabler-square-rounded-x">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M12 2l.324 .001l.318 .004l.616 .017l.299 .013l.579 .034l.553 .046c4.785 .464 6.732 2.411 7.196 7.196l.046 .553l.034 .579c.005 .098 .01 .198 .013 .299l.017 .616l.005 .642l-.005 .642l-.017 .616l-.013 .299l-.034 .579l-.046 .553c-.464 4.785 -2.411 6.732 -7.196 7.196l-.553 .046l-.579 .034c-.098 .005 -.198 .01 -.299 .013l-.616 .017l-.642 .005l-.642 -.005l-.616 -.017l-.299 -.013l-.579 -.034l-.553 -.046c-4.785 -.464 -6.732 -2.411 -7.196 -7.196l-.046 -.553l-.034 -.579a28.058 28.058 0 0 1 -.013 -.299l-.017 -.616c-.003 -.21 -.005 -.424 -.005 -.642l.001 -.324l.004 -.318l.017 -.616l.013 -.299l.034 -.579l.046 -.553c.464 -4.785 2.411 -6.732 7.196 -7.196l.553 -.046l.579 -.034c.098 -.005 .198 -.01 .299 -.013l.616 -.017c.21 -.003 .424 -.005 .642 -.005zm-1.489 7.14a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z"
+                                fill="#e9ecef" stroke-width="0" />
+                        </svg>
+                    </button>
                 </div>
-            @endforeach
+            </div>
         </div>
-    </div>
-    <div class="flex flex-col w-full h-full">
-        <nav class="flex w-full h-full">
-
-        </nav>
-        <nav class="flex h-full max-h-[50px] justify-end">
-            <button wire:click="salir"
-                class="rounded-full w-full max-w-[50px] flex items-center justify-center bg-[#565254]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2 translate-x-[-2px]">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
-                    <path d="M15 12h-12l3 -3" />
-                    <path d="M6 15l-3 -3" />
-                </svg>
-            </button>
-        </nav>
-    </div>
+    </nav>
 </header>
