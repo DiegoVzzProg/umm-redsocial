@@ -4,23 +4,25 @@
     </h4>
     <div class="w-full max-w-[400px] max-[768px]:max-w-[200px] relative flex rounded-[3px] overflow-hidden">
         <span class="flex items-center bg-[#1A1A1A] justify-center px-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="translate-x-[3px]" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+            <svg xmlns="http://www.w3.org/2000/svg" class="translate-x-[3px]" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                 <path d="M21 21l-6 -6" />
             </svg>
         </span>
-        <input type="text" name="" id="" class="outline-none bg-[#1A1A1A] w-full py-2 px-3 placeholder:opacity-50"
-            placeholder="Buscar">
+        <input type="text" name="" id=""
+            class="outline-none bg-[#1A1A1A] w-full py-2 px-3 placeholder:opacity-50" placeholder="Buscar">
     </div>
     <nav class="flex justify-between gap-2" x-data="{ open: false }">
         @foreach ($opcion_icon as $item)
-            <a href=""
-                class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100 max-[768px]:hidden">
-                {!! $item !!}
-            </a>
+            @if ($item['visible'])
+                <a href="{{ route($item['ruta']) }}"
+                    class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100 max-[768px]:hidden">
+                    {!! $item['icono'] !!}
+                </a>
+            @endif
         @endforeach
         <button @click="open = true"
             class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100">
@@ -33,7 +35,8 @@
                 <path d="M4 18l16 0" />
             </svg>
         </button>
-        <div class="fixed top-0 right-0 flex items-center justify-center w-full max-w-[500px] h-full p-5 z-[9999]"
+        <div class="fixed animate-fade-in top-0 right-0 flex items-center justify-center w-full max-w-[500px] h-full p-5 z-[9999]"
+            style="animation-delay: 0ms; animation-timing-function: steps(16); animation-duration: 200ms; animation-iteration-count: unset;"
             x-show="open">
             <div class="flex flex-col w-full h-full bg-[#1c1b1b] rounded ">
                 <div class="flex justify-end">

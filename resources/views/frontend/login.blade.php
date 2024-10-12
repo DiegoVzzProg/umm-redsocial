@@ -31,15 +31,14 @@
     @livewireStyles
 </head>
 
-<body
-    class="flex relative gap-[20px] relative flex-col justify-center items-center lg:flex-row lg:items-center lg:justify-between py-5 px-5 lg:px-[50px]">
-    <div class="w-full flex flex-col justify-center max-w-[800px] max-[1024px]:max-w-[600px] gap-2">
+<body class="flex relative gap-[20px] relative flex-col justify-center items-center py-5 px-5 lg:px-[50px]">
+    {{-- <div class="w-full flex flex-col justify-center max-w-[800px] max-[1024px]:max-w-[600px] gap-2">
         <img src="{{ asset(path: 'assets/img/umm_logo.png') }}" class="w-full">
         <p class="max-[1024px]:hidden text-[.9rem]">
             Un espacio donde cada conversación es el inicio de algo grande, y cada conexión crea un puente hacia nuevas
             posibilidades y aventuras.
         </p>
-    </div>
+    </div> --}}
 
     <livewire:form-login />
 

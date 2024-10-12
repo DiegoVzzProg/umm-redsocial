@@ -1,16 +1,16 @@
 <form action="{{ route(name: 'desencriptar', parameters: ['key' => $encrypted]) }}" method="post"
-    class="shadow-lg text-[#7A7D7D] rounded bg-[#212121] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-start gap-[10px]">
+    class="shadow-lg text-[#7A7D7D] rounded bg-[#212121] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-between gap-[10px] rounded">
     @csrf
-    <p class="text-[2rem] w-full text-center p-5 font-semibold pointer-events-none text-[#e9ecef]">
-        Bienvenido
-    </p>
+    <span class="flex items-center justify-center w-full">
+        <img src="{{ asset(path: 'assets/img/umm_logo.png') }}" class="w-full max-w-[400px]">
+    </span>
     <div class="flex flex-col w-full max-w-[400px]">
         <div class="flex relative items-center w-full  rounded-[3px] overflow-hidden shadow">
-            <div class="flex items-center bg-[#343A40] min-h-full px-[10px]">
+            <div class="flex items-center bg-[#1A1A1A] min-h-full px-[10px]">
                 <i class="bi bi-person-circle"></i>
             </div>
             <input type="text" name="usuario" autocomplete="off" wire:model.lazy="usuario"
-                class="bg-[#343A40] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
+                class="bg-[#1A1A1A] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Usuario">
         </div>
         @error('usuario')
@@ -19,11 +19,11 @@
     </div>
     <div class="flex flex-col w-full max-w-[400px]">
         <div class="flex relative items-center w-full rounded-[3px] overflow-hidden shadow">
-            <div class="flex items-center bg-[#343A40] min-h-full px-[10px]">
+            <div class="flex items-center bg-[#1A1A1A] min-h-full px-[10px]">
                 <i class="bi bi-lock-fill"></i>
             </div>
             <input type="text" name="contraseña" autocomplete="off" wire:model.lazy="contraseña"
-                class="bg-[#343A40] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
+                class="bg-[#1A1A1A] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Contraseña">
         </div>
         @error('contraseña')
@@ -32,7 +32,7 @@
     </div>
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">
         <button type="submit"
-            class="bg-[IndianRed] text-[white] app-transition-all outline-none text-[.9rem] font-normal w-full p-3">
+            class="bg-[IndianRed] text-[white] app-transition-all md:opacity-[.7] text-center lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
             Iniciar sesión
         </button>
     </div>
