@@ -3,17 +3,17 @@
         NODIFY
     </h4>
     <div class="w-full max-w-[400px] max-[768px]:max-w-[200px] relative flex rounded-[3px] overflow-hidden">
-        <span class="flex items-center bg-[#343A40] justify-center px-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="translate-x-[3px]" width="24" height="24"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+        <span class="flex items-center bg-[#1A1A1A] justify-center px-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="translate-x-[3px]" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-search">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                 <path d="M21 21l-6 -6" />
             </svg>
         </span>
-        <input type="text" name="" id=""
-            class="outline-none bg-[#343A40] w-full py-2 px-3 placeholder:opacity-50" placeholder="Buscar">
+        <input type="text" name="" id="" class="outline-none bg-[#1A1A1A] w-full py-2 px-3 placeholder:opacity-50"
+            placeholder="Buscar">
     </div>
     <nav class="flex justify-between gap-2" x-data="{ open: false }">
         @foreach ($opcion_icon as $item)
