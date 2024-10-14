@@ -8,6 +8,6 @@ class PerfilDeUsuarioController extends Controller
 {
     public function Init()
     {
-        return view('frontend.perfil-de-usuario');
+        return view('frontend.perfil');
     }
 }

@@ -25,7 +25,7 @@
             @endif
         @endforeach
         <button @click="open = true"
-            class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100">
+            class="bg-[#343A40] p-3 rounded-full app-transition-all opacity-60 hover:opacity-100 hidden max-[768px]:block">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="#e9ecef" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2">
@@ -50,6 +50,16 @@
                                 fill="#e9ecef" stroke-width="0" />
                         </svg>
                     </button>
+                </div>
+                <div class="flex flex-col gap-2">
+                    @foreach ($opcion_icon as $item)
+                        @if ($item['visible'])
+                            <a href="{{ route($item['ruta']) }}"
+                                class="p-3 rounded-[3px] app-transition-all flex items-center gap-2 opacity-60 hover:opacity-100">
+                                {!! $item['icono'] !!}{{ $item['descripcion'] }}
+                            </a>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>

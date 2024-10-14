@@ -18,4 +18,17 @@ class ControllerGeneral extends Controller
         // Redirigir a la ruta desencriptada con los parámetros de consulta
         return redirect($decryptedRoute . '?' . $queryString);
     }
+
+    public static function simplificar_num($numero)
+    {
+        $sufijos = ['', 'K', 'M'];
+        $index = 0;
+
+        while ($numero >= 1000 && $index < count($sufijos) - 1) {
+            $numero /= 1000;
+            $index++;
+        }
+
+        return round($numero, 1) . $sufijos[$index];
+    }
 }

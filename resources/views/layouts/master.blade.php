@@ -19,7 +19,7 @@
 <body class="flex flex-col animate-fade-in">
     <livewire:header />
 
-    <main class="w-full min-h-[calc(100vh-90px)] flex py-3">
+    <main class="w-full min-h-[calc(100vh-200px)] flex py-3">
         @yield('content')
     </main>
 
