@@ -4,8 +4,8 @@
             <div class="flex">
                 <span
                     class="flex w-full max-w-[55px] min-w-[55px] object-cover h-full max-h-[55px] overflow-hidden rounded-full opacity-75 app-transition-all hover:opacity-100">
-                    @if ($imagen_perfil)
-                        <img src="{{ asset('assets/img/imgs_perfil/' . $imagen_perfil) }}" alt="" srcset="">
+                    @if ($imagen_perfil || $imagen_perfil != '')
+                        <livewire:lw-component-imagen-encriptada :filename="$imagen_perfil" />
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"

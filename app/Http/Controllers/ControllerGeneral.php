@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class ControllerGeneral extends Controller
 {
@@ -30,5 +32,19 @@ class ControllerGeneral extends Controller
         }
 
         return round($numero, 1) . $sufijos[$index];
+    }
+
+    public static function ObtenerFotoURL($filename)
+    {
+        if (Storage::exists('usuarios_fotos/' . $filename)) {
+            $url = URL::temporarySignedRoute(
+                'photo.show',
+                now()->addMinutes(30),
+                ['filename' => $filename]
+            );
+        } else {
+            $url = '';
+        }
+        return $url;
     }
 }

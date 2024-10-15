@@ -3,10 +3,11 @@
         <div
             class="flex w-full h-screen border-[#272727] border max-h-60 max-[768px]:max-h-56 max-[640px]:max-h-36 relative">
 
-            <div class="bg-[#171616] absolute bottom-[-28px] left-[15px] max-[425px]:left-[10px] rounded-full">
+            <div
+                class="bg-[#171616] absolute bottom-[-28px] left-[15px] max-[425px]:left-[10px] rounded-full overflow-hidden">
                 <span class="flex w-full max-w-20 opacity-70">
-                    @if ($imagen_perfil)
-                        <img src="{{ asset('assets/img/imgs_perfil/' . $imagen_perfil) }}" alt="" srcset="">
+                    @if ($imagen_perfil || $imagen_perfil != '')
+                        <livewire:lw-component-imagen-encriptada :filename="$imagen_perfil" />
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
@@ -20,7 +21,7 @@
                     @endif
                 </span>
             </div>
-            <div class="absolute bottom-[3px] left-[95px] max-[425px]:left-[90px] z-index-10">
+            <div class="absolute bottom-[3px] left-[102px] max-[425px]:left-[90px] z-index-10">
                 <p class="flex font-normal text-[.7rem] max-[320px]:text-[.6rem]">
                     {{ $nombre_completo }}
                 </p>
