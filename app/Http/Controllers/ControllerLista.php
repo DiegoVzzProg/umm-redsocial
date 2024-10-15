@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\DB;
 class ControllerLista extends Controller
 {
 
-    public static function limpiar_response_json($response)
-    {
-        return preg_replace('/^.*?\[/', '[', $response);
-    }
-
     public function fn_inicio_sesion(Request $request)
     {
         $request->validate([

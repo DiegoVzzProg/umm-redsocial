@@ -1,5 +1,5 @@
 <section class="w-full bg-[#171616] rounded p-5">
-    <div class="flex flex-col w-full min-h-full xl:max-w-screen-lg">
+    <div class="flex flex-col w-full min-h-full xl:max-w-screen-xl lg:max-w-screen-lg">
         <div
             class="flex w-full h-screen border-[#272727] border max-h-60 max-[768px]:max-h-56 max-[640px]:max-h-36 relative">
 
@@ -31,17 +31,17 @@
         </div>
         <div class="grid max-[640px]:grid-cols-1 grid-cols-2 h-full p-5 border border-[#272727] border-t-0">
             <div class="flex items-center w-full">
-                <p class="flex font-light text-[.85rem] max-[640px]:text-[.75rem] text-balance py-2">
+                <p class="flex font-light text-[.85rem] max-[640px]:text-[.75rem] text-pretty py-2">
                     {{ $biografia }}
                 </p>
             </div>
-            <div class="grid w-full grid-cols-3 max-[640px]:divide-x-0 divide-x">
+            <div class="flex items-center justify-around w-full gap-3 max-[640px]:pt-2">
                 @foreach ($estadisticas as $item)
-                    <span class="flex flex-col items-center justify-center px-2">
+                    <span class="flex flex-col items-center justify-center">
                         <p class="text-[.8rem] font-semibold">
                             {{ $item['valor'] }}
                         </p>
-                        <p class="text-[.8rem] max-[768px]:text-[.7rem] font-normal text-[#dce1e6] translate-x-[5px]">
+                        <p class="text-[.8rem] max-[768px]:text-[.7rem] font-normal text-[#dce1e6]">
                             {{ $item['titulo'] }}
                         </p>
                     </span>

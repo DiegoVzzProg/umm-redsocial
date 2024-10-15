@@ -4,10 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class TextPost extends Component
+class LwMensajes extends Component
 {
     public function render()
     {
-        return view('livewire.text-post');
+        return view('livewire.lw-mensajes');
     }
 }

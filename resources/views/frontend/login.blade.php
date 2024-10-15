@@ -33,7 +33,7 @@
 
 <body class="flex relative gap-[20px] relative flex-col justify-center items-center py-5 px-5 lg:px-[50px]">
 
-    <livewire:form-login />
+    <livewire:lw-form-login />
 
     @if (session('data.mensaje'))
         <x-alerta :mensaje="session('data.mensaje')" tipo="warning" />

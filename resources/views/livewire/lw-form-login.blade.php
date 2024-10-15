@@ -1,6 +1,6 @@
-<form action="{{ route(name: 'ruta', parameters: ['key' => $encrypted]) }}" method="post"
+<div
     class="shadow-lg text-[#7A7D7D] rounded bg-[#212121] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-between gap-[10px] rounded">
-    @csrf
+
     <span class="flex items-center justify-start w-full">
         <img src="{{ asset(path: 'assets/img/umm_logo.png') }}" class="w-full max-w-[150px]">
 
@@ -32,7 +32,7 @@
         @enderror
     </div>
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">
-        <button type="submit"
+        <button type="submit" wire:click="InicioSesion"
             class="bg-[IndianRed] text-[white] app-transition-all md:opacity-[.7] text-center lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
             Iniciar sesión
         </button>
@@ -49,4 +49,4 @@
             Iniciar sesión con Office365
         </a>
     </div>
-</form>
+</div>

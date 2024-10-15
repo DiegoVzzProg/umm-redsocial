@@ -8,6 +8,6 @@
 
 @section('content')
     <div class="flex w-full min-h-[calc(100vh-115px)] px-2">
-        <livewire:perfil />
+        <livewire:lw-perfil :id_usuario="$id_usuario" />
     </div>
 @endsection

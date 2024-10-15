@@ -4,25 +4,29 @@ namespace App\Livewire;
 
 use App\Http\Controllers\ControllerGeneral;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 
-class PerfilUsuario extends Component
+class LwPerfil extends Component
 {
+    public $id_usuario;
+    public function mount($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
+    }
+
     public function render()
     {
-        $id_usuario = session()->has('id_usuario');
-        $response = Usuario::where('id_usuario', $id_usuario)->first();
+        $response = Usuario::where('id_usuario', $this->id_usuario)->first();
 
         $imagen_perfil = $response->foto_perfil;
-        $usuario = $response->usuario;
-
+        $usuario = '@' . $response->usuario;
+        $nombre_completo = trim("{$response->nombre} {$response->paterno} {$response->materno}");
+        $biografia = $response->biografia;
         $estadisticas = [
             ["titulo" => "seguidores", "valor" => ControllerGeneral::simplificar_num($response->seguidores)],
             ["titulo" => "sigues", "valor" => ControllerGeneral::simplificar_num($response->sigue_a)],
             ["titulo" => "publicaciones", "valor" => ControllerGeneral::simplificar_num($response->publicaciones)],
         ];
-        $encryptedUser = Crypt::encrypt(value: route(name: 'perfil.usuario'));
-        return view('livewire.perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario', 'encryptedUser'));
+        return view('livewire.lw-perfil', compact('imagen_perfil', 'usuario', 'estadisticas', 'biografia', 'nombre_completo'));
     }
 }

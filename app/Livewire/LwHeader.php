@@ -2,11 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Http\Controllers\ControllerLista;
-use App\Models\Usuario;
 use Livewire\Component;
 
-class Header extends Component
+class LwHeader extends Component
 {
     public function salir()
     {
@@ -89,6 +87,6 @@ class Header extends Component
             ]
         ];
 
-        return view('livewire.header', compact('opcion_icon'));
+        return view('livewire.lw-header', compact('opcion_icon'));
     }
 }

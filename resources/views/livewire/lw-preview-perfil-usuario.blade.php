@@ -1,7 +1,8 @@
 <div class="flex flex-col w-full max-w-[350px] bg-[#171616] items-center p-2 gap-2 max-[768px]:hidden rounded">
     <div class="flex flex-col items-center justify-between w-full h-full max-h-[220px] pt-3 gap-2">
-        <a href="{{ route(name: 'ruta', parameters: ['key' => $encryptedUser]) }}"
-            class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-75 app-transition-all hover:opacity-100">
+        <button type="button"
+            class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-75 app-transition-all hover:opacity-100"
+            wire:click="GoToPerfil({{ (int) session()->has('id_usuario') }})">
             @if ($imagen_perfil)
                 <img src="{{ asset('assets/img/imgs_perfil/' . $imagen_perfil) }}" alt="" srcset="">
             @else
@@ -14,7 +15,7 @@
                     <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                 </svg>
             @endif
-        </a>
+        </button>
         <div class="flex">
             <p>
                 {{ $usuario }}
@@ -35,7 +36,7 @@
     </div>
     <div class="flex flex-col w-full h-screen px-2 pt-2 overflow-y-auto app-quitar-scroll">
         <h1 class="p-2 px-3 rounded bg-[#1e1d1d] font-light">
-            Sugerencias de amistade
+            Sugerencias de amistades
         </h1>
         <div class="min-h-auto">
 
