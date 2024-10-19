@@ -1,7 +1,7 @@
-<div class="flex flex-col w-full max-w-[350px] bg-[#171616] items-center p-2 gap-2 max-[768px]:hidden rounded">
+<div class="flex flex-col w-full max-w-[350px] bg-[#E9ECEF] items-center p-2 gap-2 max-[768px]:hidden rounded">
     <div class="flex flex-col items-center justify-between w-full h-full max-h-[220px] pt-3 gap-2">
         <button type="button"
-            class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-75 app-transition-all hover:opacity-100"
+            class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-100 app-transition-all hover:opacity-80"
             wire:click="GoToPerfil({{ (int) session()->has('id_usuario') }})">
             @if ($imagen_perfil || $imagen_perfil != '')
                 <livewire:lw-component-imagen-encriptada :filename="$imagen_perfil" />
@@ -24,10 +24,10 @@
         <div class="grid w-full grid-cols-3 divide-x divide-[#343A40]">
             @foreach ($estadisticas as $item)
                 <span class="flex flex-col items-center justify-center px-2">
-                    <p class="text-[.8rem] font-semibold">
+                    <p class="text-[.8rem] font-semibold text-[#404040]">
                         {{ $item['valor'] }}
                     </p>
-                    <p class="text-[.8rem] font-normal text-[#dce1e6]">
+                    <p class="text-[.8rem] font-normal">
                         {{ $item['titulo'] }}
                     </p>
                 </span>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="flex flex-col w-full h-screen px-2 pt-2 overflow-y-auto app-quitar-scroll">
-        <h1 class="p-2 px-3 rounded bg-[#1e1d1d] font-light">
+        <h1 class="p-2 px-3 rounded bg-[#F8F9FA] font-light">
             Sugerencias de amistades
         </h1>
         <div class="min-h-auto">

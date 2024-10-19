@@ -11,7 +11,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
-    color: #e9ecef;
+    color: #272727;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -20,11 +20,11 @@ html,
 body {
     width: 100%;
     min-height: 100vh;
-    background-color: #121212;
+    background-color: #f8f9fa;
 }
 
 .bd {
-    border: 1px solid white;
+    border: 1px solid black;
 }
 
 .app-quitar-scroll::-webkit-scrollbar {

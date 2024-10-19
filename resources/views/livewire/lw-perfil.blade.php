@@ -1,52 +1,14 @@
-<section class="w-full bg-[#171616] rounded p-5">
-    <div class="flex flex-col w-full min-h-full xl:max-w-screen-xl lg:max-w-screen-lg">
+<section class="w-full max-w-screen-lg rounded">
+    <div class="flex flex-col w-full min-h-full gap-1">
         <div
-            class="flex w-full h-screen border-[#272727] border max-h-60 max-[768px]:max-h-56 max-[640px]:max-h-36 relative">
+            class="flex flex-col w-full bg-[#E9ECEF] h-screen rounded overflow-hidden max-h-96 max-[768px]:max-h-56 max-[640px]:max-h-36 relative">
+            <div class="flex w-full h-full max-h-48">
+                {{-- AQUI VA IMAGEN DE PORTADA --}}
+            </div>
+            <div class="flex w-full h-full p-3 rounded-b">
+                <div class="w-full h-full bd rounded max-w-[80px] max-h-[80px]">
 
-            <div
-                class="bg-[#171616] absolute bottom-[-28px] left-[15px] max-[425px]:left-[10px] rounded-full overflow-hidden">
-                <span class="flex w-full max-w-20 opacity-70">
-                    @if ($imagen_perfil || $imagen_perfil != '')
-                        <livewire:lw-component-imagen-encriptada :filename="$imagen_perfil" />
-                    @else
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                            <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-                        </svg>
-                    @endif
-                </span>
-            </div>
-            <div class="absolute bottom-[3px] left-[102px] max-[425px]:left-[90px] z-index-10">
-                <p class="flex font-normal text-[.7rem] max-[320px]:text-[.6rem]">
-                    {{ $nombre_completo }}
-                </p>
-                <p class="flex font-semibold text-[.7rem] max-[320px]:text-[.6rem]">
-                    {{ $usuario }}
-                </p>
-            </div>
-        </div>
-        <div class="grid max-[640px]:grid-cols-1 grid-cols-2 h-full p-5 border border-[#272727] border-t-0">
-            <div class="flex items-center w-full">
-                <p class="flex font-light text-[.85rem] max-[640px]:text-[.75rem] text-pretty py-2">
-                    {{ $biografia }}
-                </p>
-            </div>
-            <div class="flex items-center justify-around w-full gap-3 max-[640px]:pt-2">
-                @foreach ($estadisticas as $item)
-                    <span class="flex flex-col items-center justify-center">
-                        <p class="text-[.8rem] font-semibold">
-                            {{ $item['valor'] }}
-                        </p>
-                        <p class="text-[.8rem] max-[768px]:text-[.7rem] font-normal text-[#dce1e6]">
-                            {{ $item['titulo'] }}
-                        </p>
-                    </span>
-                @endforeach
+                </div>
             </div>
         </div>
     </div>
