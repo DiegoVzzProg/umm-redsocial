@@ -31,7 +31,7 @@
     @livewireStyles
 </head>
 
-<body class="flex relative gap-[20px] relative flex-col justify-center items-center py-5 px-5 lg:px-[50px]">
+<body class="flex relative gap-[20px] relative flex-col justify-center items-center py-5 px-5 lg:px-[50px] bg-white">
 
     <livewire:lw-form-login />
 

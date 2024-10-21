@@ -1,5 +1,5 @@
 <div
-    class="shadow-lg text-[#7A7D7D] rounded bg-[#212121] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-between gap-[10px] rounded">
+    class="shadow-lg text-[#7A7D7D] rounded bg-[#F8F9FA] w-full h-full max-w-[600px] p-5 max-h-[500px] flex flex-col items-center justify-between gap-[10px] rounded">
 
     <div class="flex items-center justify-center w-full h-full">
         <span class="max-w-[400px] w-full font-bold py-3 flex items-center gap-1">
@@ -14,12 +14,12 @@
         </span>
     </div>
     <div class="flex flex-col w-full max-w-[400px]">
-        <div class="flex relative items-center bg-[#1A1A1A] w-full h-full rounded-[3px] overflow-hidden shadow">
-            <div class="flex items-center bg-[#1A1A1A] px-[10px]">
+        <div class="flex relative items-center bg-[#E9ECEF] w-full h-full rounded-[3px] overflow-hidden shadow">
+            <div class="flex items-center bg-[#E9ECEF] px-[10px]">
                 <i class="bi bi-person-circle"></i>
             </div>
             <input type="text" name="usuario" autocomplete="off" wire:model.lazy="usuario"
-                class="bg-[#1A1A1A] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
+                class="bg-[#E9ECEF] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Usuario">
         </div>
         @error('usuario')
@@ -27,12 +27,12 @@
         @enderror
     </div>
     <div class="flex flex-col w-full max-w-[400px]">
-        <div class="flex relative items-center w-full bg-[#1A1A1A] rounded-[3px] overflow-hidden shadow">
-            <div class="flex items-center bg-[#1A1A1A] min-h-full px-[10px]">
+        <div class="flex relative items-center w-full bg-[#E9ECEF] rounded-[3px] overflow-hidden shadow">
+            <div class="flex items-center bg-[#E9ECEF] min-h-full px-[10px]">
                 <i class="bi bi-lock-fill"></i>
             </div>
             <input type="text" name="contraseña" autocomplete="off" wire:model.lazy="contraseña"
-                class="bg-[#1A1A1A] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
+                class="bg-[#E9ECEF] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
                 placeholder="Contraseña">
         </div>
         @error('contraseña')
@@ -48,7 +48,7 @@
 
     <div
         class="separador relative w-full max-w-[400px] p-5 text-center flex items-center justify-center bg-transparent">
-        <p class="z-10 bg-[#212121] px-[15px] pointer-events-none translate-y-[-1px]">o</p>
+        <p class="z-10 bg-[#F8F9FA] px-[15px] pointer-events-none translate-y-[-1px]">o</p>
     </div>
 
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">

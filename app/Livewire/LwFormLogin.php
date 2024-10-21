@@ -43,6 +43,11 @@ class LwFormLogin extends Component
             if ($usuario && $usuario->contraseña === $this->contraseña) {
 
                 session()->put('id_usuario', $usuario->id_usuario);
+                session()->put('foto_perfil', $usuario->foto_perfil);
+                session()->put('archivo_foto_portada', $usuario->archivo_foto_portada);
+                session()->put('usuario', '@' . $usuario->usuario);
+                session()->put('nombre_completo', trim("{$usuario->nombre} {$usuario->paterno} {$usuario->materno}"));
+                session()->put('biografia', $usuario->biografia);
 
                 $this->contraseña = '';
 
