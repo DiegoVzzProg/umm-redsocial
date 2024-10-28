@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full max-w-[350px] bg-[#E9ECEF] items-center p-2 gap-2 max-[768px]:hidden rounded">
+<div class="flex flex-col w-full max-w-[350px] bg-[#F8F9FA] items-center p-2 gap-2 max-[768px]:hidden rounded">
     <div class="flex flex-col items-center justify-between w-full h-full max-h-[220px] pt-3 gap-2">
         <button type="button"
             class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-100 app-transition-all hover:opacity-80"

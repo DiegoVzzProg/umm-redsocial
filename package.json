@@ -16,6 +16,7 @@
         "@midudev/tailwind-animations": "^0.1.0",
         "@splidejs/splide": "^4.1.4",
         "alpinejs": "^3.14.1",
+        "autosize": "^6.0.1",
         "bootstrap-icons": "^1.11.3"
     }
 }

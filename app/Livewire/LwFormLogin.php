@@ -48,6 +48,7 @@ class LwFormLogin extends Component
                 session()->put('usuario', '@' . $usuario->usuario);
                 session()->put('nombre_completo', trim("{$usuario->nombre} {$usuario->paterno} {$usuario->materno}"));
                 session()->put('biografia', $usuario->biografia);
+                session()->put('matricula', $usuario->matricula);
 
                 $this->contraseña = '';
 

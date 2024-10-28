@@ -21,7 +21,8 @@ class LwPerfil extends Component
         $nombre_completo = session('nombre_completo');
         $usuario = session('usuario');
         $biografia = session('biografia');
-        // dd($archivo_foto_perfil);
+        $matricula = session('matricula');
+
         $response = Usuario::where('id_usuario', $this->id_usuario)->first();
 
         $estadisticas = [
@@ -29,6 +30,6 @@ class LwPerfil extends Component
             ["titulo" => "sigues", "valor" => ControllerGeneral::simplificar_num($response->sigue_a)],
             ["titulo" => "publicaciones", "valor" => ControllerGeneral::simplificar_num($response->publicaciones)],
         ];
-        return view('livewire.lw-perfil', compact('foto_perfil', 'usuario', 'estadisticas', 'biografia', 'nombre_completo', 'archivo_foto_portada'));
+        return view('livewire.lw-perfil', compact('foto_perfil', 'usuario', 'estadisticas', 'biografia', 'nombre_completo', 'archivo_foto_portada', 'matricula'));
     }
 }

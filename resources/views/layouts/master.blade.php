@@ -7,16 +7,25 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="{{ asset(path: 'js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset(path: 'js/jquery.autosize.min.js') }}"></script>
 
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
     @vite('resources/css/master.css')
-    @yield('css')
+
     <title>NODIFY</title>
     @livewireStyles
+
+    @yield('head')
+
+    <script>
+        $(document).ready(() => {
+            autosize(document.querySelectorAll('textarea'));
+        });
+    </script>
 </head>
 
-<body class="flex flex-col animate-fade-in">
+<body class="flex flex-col">
     <livewire:lw-header />
 
     <main class="w-full min-h-[calc(100vh-200px)] flex py-3">

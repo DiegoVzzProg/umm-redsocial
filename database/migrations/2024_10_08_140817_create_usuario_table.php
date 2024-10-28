@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 255);      // nombre VARCHAR(255)
             $table->string('paterno', 255);     // paterno VARCHAR(255)
             $table->string('materno', 255);     // materno VARCHAR(255)
-            $table->string('usuario', 50);      // usuario VARCHAR(50)
+            $table->string('usuario', 20);      // usuario VARCHAR(20)
             $table->text('contraseña');         // contraseña TEXT
             $table->string('email', 254);       // email VARCHAR(254)
             $table->text('telefono');           // telefono TEXT

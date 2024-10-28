@@ -21,3 +21,7 @@ Route::get('/foto/{filename}', function ($filename) {
 })->name('photo.show')->middleware('signed');
 
 Route::get(uri: '/inicio', action: [HomeController::class, 'Init'])->name(name: 'inicio');
+
+Route::get('/configuracion', function () {
+    return view('frontend.configuracion-usuario');
+})->name('configuracion');
