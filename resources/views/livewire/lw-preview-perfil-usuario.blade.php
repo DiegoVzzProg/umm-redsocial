@@ -2,9 +2,9 @@
     <div class="flex flex-col items-center justify-between w-full h-full max-h-[220px] pt-3 gap-2">
         <button type="button"
             class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-100 app-transition-all hover:opacity-80"
-            wire:click="GoToPerfil({{ (int) session()->has('id_usuario') }})">
+            wire:click="GoToPerfil('{{ !session()->has('id_usuario') ? null : Crypt::encryptString(session('id_usuario')) }}')">
             @if ($imagen_perfil || $imagen_perfil != '')
-                <livewire:lw-component-imagen-encriptada :filename="$imagen_perfil" />
+                <x-app-recurso-encrypt :filename="$imagen_perfil" />
             @else
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
                     stroke="#ADB5BD" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
@@ -21,18 +21,34 @@
                 {{ $usuario }}
             </p>
         </div>
-        <div class="grid w-full grid-cols-3 divide-x divide-[#343A40]">
-            @foreach ($estadisticas as $item)
+        @if (count($estadisticas) > 0)
+            <div class="grid w-full grid-cols-3 divide-x divide-[#343A40]">
                 <span class="flex flex-col items-center justify-center px-2">
                     <p class="text-[.8rem] font-semibold text-[#404040]">
-                        {{ $item['valor'] }}
+                        {{ $estadisticas[0]['seguidores'] }}
                     </p>
                     <p class="text-[.8rem] font-normal">
-                        {{ $item['titulo'] }}
+                        seguidores
                     </p>
                 </span>
-            @endforeach
-        </div>
+                <span class="flex flex-col items-center justify-center px-2">
+                    <p class="text-[.8rem] font-semibold text-[#404040]">
+                        {{ $estadisticas[0]['sigues'] }}
+                    </p>
+                    <p class="text-[.8rem] font-normal">
+                        sigues
+                    </p>
+                </span>
+                <span class="flex flex-col items-center justify-center px-2">
+                    <p class="text-[.8rem] font-semibold text-[#404040]">
+                        {{ $estadisticas[0]['publicaciones'] }}
+                    </p>
+                    <p class="text-[.8rem] font-normal">
+                        publicaciones
+                    </p>
+                </span>
+            </div>
+        @endif
     </div>
     <div class="flex flex-col w-full h-screen px-2 pt-2 overflow-y-auto app-quitar-scroll">
         <h1 class="p-2 px-3 rounded bg-[#F8F9FA] font-light">

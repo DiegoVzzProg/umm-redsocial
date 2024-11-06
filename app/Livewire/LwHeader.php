@@ -2,15 +2,31 @@
 
 namespace App\Livewire;
 
+use App\Http\Controllers\ControllerGeneral;
+use App\Http\Controllers\ControllerLista;
+use App\Models\Usuario;
 use Livewire\Component;
 
 class LwHeader extends Component
 {
+    public $txt_buscar_usuario = '';
+    public $usuarios = [];
     public function salir()
     {
         session()->flush();
         return redirect()->route('login');
     }
+
+    public function BuscarUsuario()
+    {
+        $this->usuarios = ControllerLista::fn_buscar_usuario_x_valor_o_id_usuario($this->txt_buscar_usuario, null);
+    }
+
+    public function GoToPerfil($id_usuario)
+    {
+        ControllerGeneral::GoToPerfil($id_usuario);
+    }
+
     public function render()
     {
         $boton_inicio = !request()->routeIs(patterns: 'inicio');

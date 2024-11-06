@@ -14,5 +14,7 @@ class Seguidores extends Model
         'id_seguidor',
         'id_seguido',
         'fecha',
+        'borrado',
     ];
+    public $timestamps = false;
 }

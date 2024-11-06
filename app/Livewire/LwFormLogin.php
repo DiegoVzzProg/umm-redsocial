@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Usuario;
 use Exception;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class LwFormLogin extends Component
 {

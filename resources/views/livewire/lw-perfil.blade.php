@@ -1,10 +1,10 @@
-<section class="w-full max-w-screen-lg rounded" x-data="{ AbrirFormEditPresentacion: false }">
+<section class="w-full max-w-screen-lg rounded">
     <div class="flex flex-col w-full min-h-full gap-2">
         <div
-            class="flex flex-col w-full bg-[#E9ECEF] h-screen rounded overflow-hidden max-h-96 max-[768px]:max-h-[484px] relative">
+            class="flex flex-col w-full bg-[#F3F4F5] h-screen rounded overflow-hidden max-h-96 max-[768px]:max-h-[484px] relative">
             @if ($archivo_foto_portada || $archivo_foto_portada != '')
                 <div class="flex w-full h-full max-h-48 max-[425px]:max-h-36 max-[375px]:max-h-32">
-                    <livewire:lw-component-imagen-encriptada :filename="$archivo_foto_portada" />
+                    <x-app-recurso-encrypt :filename="$archivo_foto_portada" :cssFormato="2" />
                 </div>
             @else
                 <div class="flex w-full h-full max-h-48 max-[425px]:max-h-44 bg-[#495057]"></div>
@@ -14,11 +14,11 @@
                     <div class="flex flex-row gap-2">
                         <div class="w-full h-full rounded max-w-[85px] overflow-hidden relative transition-all">
                             @if ($foto_perfil || $foto_perfil != '')
-                                <livewire:lw-component-imagen-encriptada :filename="$foto_perfil" />
+                                <x-app-recurso-encrypt :filename="$foto_perfil" />
                             @else
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-user-square-rounded">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
@@ -34,23 +34,41 @@
                             <p class="text-[clamp(.7rem,3vw,.8rem)] font-semibold">
                                 {{ $usuario }}
                             </p>
-                            <p class="text-[clamp(.7rem,3vw,.8rem)] font-medium">
-                                {{ $matricula }}
-                            </p>
+                            @if ($matricula > 0)
+                                <p class="text-[clamp(.7rem,3vw,.8rem)] font-medium">
+                                    {{ $matricula }}
+                                </p>
+                            @endif
                         </div>
                     </div>
-                    <div class="grid items-center justify-center grid-cols-3 gap-5">
-                        @foreach ($estadisticas as $item)
+                    @if (count($estadisticas) > 0)
+                        <div class="grid items-center justify-center grid-cols-3 gap-5 pe-[7px]">
                             <div class="flex flex-col items-center">
                                 <p class="text-[clamp(.7rem,3vw,.8rem)] font-medium">
-                                    {{ $item['valor'] }}
+                                    {{ $estadisticas[0]['seguidores'] }}
                                 </p>
                                 <p class="text-[clamp(.7rem,3vw,.8rem)] font-semibold">
-                                    {{ $item['titulo'] }}
+                                    seguidores
                                 </p>
                             </div>
-                        @endforeach
-                    </div>
+                            <div class="flex flex-col items-center">
+                                <p class="text-[clamp(.7rem,3vw,.8rem)] font-medium">
+                                    {{ $estadisticas[0]['sigues'] }}
+                                </p>
+                                <p class="text-[clamp(.7rem,3vw,.8rem)] font-semibold">
+                                    sigues
+                                </p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <p class="text-[clamp(.7rem,3vw,.8rem)] font-medium">
+                                    {{ $estadisticas[0]['publicaciones'] }}
+                                </p>
+                                <p class="text-[clamp(.7rem,3vw,.8rem)] font-semibold">
+                                    publicaciones
+                                </p>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="flex max-w-lg">
                     <p class="text-[clamp(.65rem,3vw,.7rem)] text-balance">
@@ -58,8 +76,8 @@
                     </p>
                 </div>
                 @if (((int) session('id_usuario')) == $id_usuario)
-                    <button class="absolute bottom-0 right-0 p-3 app-transition-all hover:animate-pulse"
-                        @click="AbrirFormEditPresentacion = true">
+                    <button class="absolute bottom-0 right-[2px] p-3 app-transition-all hover:animate-pulse"
+                        wire:click="AbrirFormulario">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
@@ -69,25 +87,66 @@
                             <path d="M16 5l3 3" />
                         </svg>
                     </button>
+                @else
+                    @if (!$responseSeguidores)
+                        <button class="absolute bottom-0 right-[2px] p-3 app-transition-all hover:opacity-70"
+                            wire:click="AgregarAmigo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-user-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M16 19h6" />
+                                <path d="M19 16v6" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+                            </svg>
+                        </button>
+                    @else
+                        <button class="absolute bottom-0 right-[2px] p-3 hover:opacity-70" wire:click="EliminarAmigo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-user-check">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+                                <path d="M15 19l2 2l4 -4" />
+                            </svg>
+                        </button>
+                    @endif
                 @endif
             </div>
         </div>
-        <div class="flex bg-[#E9ECEF] p-2 rounded">
-            <p class="text-clamp(.9rem,3vw,1.1rem) font-semibold">
-                Publicaciones
-            </p>
+        <div class="flex flex-col bg-[#F3F4F5] p-2 gap-3 rounded">
+            <div>
+                <p class="text-clamp(.9rem,3vw,1.1rem) font-semibold">
+                    @if (((int) session('id_usuario')) == $id_usuario)
+                        Sobre mi
+                    @else
+                        Añadir publicacion
+                    @endif
+                </p>
+                <livewire:lw-component-text-publicacion bgColor="#e9ecef" />
+            </div>
+
+            <div class="flex flex-col w-full font-medium">
+                <p>
+                    Publicaciones
+                </p>
+            </div>
         </div>
     </div>
-    @if (((int) session('id_usuario')) == $id_usuario)
-        <div class="absolute top-0 left-0 flex flex-col w-full h-full p-2 bg-[rgba(0,0,0,.1)] flex items-center justify-center"
-            x-show="AbrirFormEditPresentacion">
+    @if (((int) session('id_usuario')) == $id_usuario && $abrir_formulario == true)
+        <div
+            class="absolute top-0 left-0 flex flex-col w-full h-full p-2 bg-[rgba(0,0,0,.1)] flex items-center justify-center">
             <div
                 class="flex flex-col w-full p-5 gap-5 h-full max-w-screen-md bg-white max-h-[768px] rounded shadow overflow-y-auto">
                 <div
                     class="text-[1.2rem] font-semibold pb-3 border-b border-b-[#343A40] flex items-center justify-between">
                     Editar presentación
 
-                    <button @click="AbrirFormEditPresentacion = false">
+                    <button wire:click="AbrirFormulario">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x">

@@ -33,12 +33,24 @@ class ControllerLista extends Controller
         }
     }
 
-    public static function sp_obtener_info_usuario_estadisticas($id_usuario)
+    public static function sp_obtener_estadisticas_usuario($id_usuario)
     {
-        try {
-            return DB::select('CALL sp_obtener_info_usuario_estadisticas(?)', [$id_usuario]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'No se pudo obtener la información.'], 500);
+        $response = new ControllerGeneral();
+        return $response->ExecuteStoreProcedure(store: "sp_obtener_estadisticas_usuario", parameters: [$id_usuario]);
+    }
+
+    public static function fn_buscar_usuario_x_valor_o_id_usuario($pvalor = '',  $id_usuario)
+    {
+        $query = Usuario::query();
+
+        if (!empty($pvalor)) {
+
+            $query->where('usuario', 'LIKE', '%' . $pvalor . '%');
+        } else {
+            if ($id_usuario && $id_usuario > 0) {
+                $query->where('id_usuario', $id_usuario);
+            }
         }
+        return $query->get();
     }
 }

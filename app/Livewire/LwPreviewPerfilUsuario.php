@@ -3,7 +3,9 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\ControllerGeneral;
+use App\Http\Controllers\ControllerLista;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
 use Illuminate\Support\Str;
 
@@ -11,26 +13,22 @@ class LwPreviewPerfilUsuario extends Component
 {
     public function render()
     {
-        $id_usuario = session()->has('id_usuario');
-        $response = Usuario::where('id_usuario', $id_usuario)->first();
+        $imagen_perfil = session('foto_perfil');
+        $usuario = session('usuario');
 
-        $imagen_perfil = $response->foto_perfil;
-        $usuario = $response->usuario;
 
-        $estadisticas = [
-            ["titulo" => "seguidores", "valor" => ControllerGeneral::simplificar_num($response->seguidores)],
-            ["titulo" => "sigues", "valor" => ControllerGeneral::simplificar_num($response->sigue_a)],
-            ["titulo" => "publicaciones", "valor" => ControllerGeneral::simplificar_num($response->publicaciones)],
-        ];
+        $id_usuario = session('id_usuario');
+
+        $estadisticas = ControllerLista::sp_obtener_estadisticas_usuario($id_usuario == null ? 0 : $id_usuario);
 
         return view('livewire.lw-preview-perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario'));
     }
+
     public function GoToPerfil($id_usuario)
     {
-
-        $uuid = Str::uuid()->toString();
-        session()->put($uuid, $id_usuario);
-
-        return redirect()->route('perfil.usuario', ['usuario' => $uuid]);
+        if ($id_usuario)
+            ControllerGeneral::GoToPerfil($id_usuario);
+        else
+            return redirect()->route('login');
     }
 }
