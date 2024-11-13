@@ -4,8 +4,8 @@
             <div class="flex">
                 <span
                     class="flex w-full max-w-[55px] min-w-[55px] object-cover h-full max-h-[55px] overflow-hidden rounded-full">
-                    @if ($imagen_perfil || $imagen_perfil != '')
-                        <x-app-recurso-encrypt :filename="$imagen_perfil" />
+                    @if ($fotoPerfil || $fotoPerfil != '')
+                        <x-app-recurso-encrypt :filename="$fotoPerfil" :carpeta="'usuarios_fotos'" />
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
                             fill="none" stroke="#ADB5BD" stroke-width="1" stroke-linecap="round"
@@ -22,8 +22,11 @@
             <livewire:lw-component-text-publicacion />
         </section>
 
-        <section class="bg-[#F8F9FA] rounded w-full flex p-3 px-4 relative gap-2">
-            asd
+        <section class="bg-[#F8F9FA] w-full flex p-3 px-4 relative gap-[2em] flex-col">
+            @for ($i = 0; $i < count($TablaPublicaciones); $i++)
+                <x-app-publicacion-usuario fotoPerfil="{{ $TablaPublicaciones[$i]['foto_perfil'] }}" :fechaCreacion="$TablaPublicaciones[$i]['fecha_creacion']"
+                    :nombre="$TablaPublicaciones[$i]['nombre']" :usuario="$TablaPublicaciones[$i]['usuario']" :contenido="$TablaPublicaciones[$i]['usuario']" :imagen="$TablaPublicaciones[$i]['imagen']" />
+            @endfor
         </section>
     </article>
 </div>

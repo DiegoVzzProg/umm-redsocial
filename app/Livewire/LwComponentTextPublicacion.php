@@ -15,4 +15,8 @@ class LwComponentTextPublicacion extends Component
     {
         return view('livewire.lw-component-text-publicacion', ["bgColor" => $this->bgColor]);
     }
+
+    public function AgregarPublicacion() {
+        
+    }
 }

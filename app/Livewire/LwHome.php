@@ -2,18 +2,22 @@
 
 namespace App\Livewire;
 
-use App\Models\Usuario;
+use App\Http\Controllers\ParamPublicacionesController;
+use App\Http\Controllers\SpPublicacionesController;
 use Livewire\Component;
 
 class LwHome extends Component
 {
     public function render()
     {
-        $id_usuario = session('id_usuario');
-        $response = Usuario::where('id_usuario', $id_usuario)->first();
+        $fotoPerfil = session('fotoPerfil');
 
-        $imagen_perfil = $response == null ? null : $response->foto_perfil;
+        $parametros = new ParamPublicacionesController();
+        $parametros->p_id_usuario = session('id_usuario');
+        $parametros->p_perfil = false;
 
-        return view('livewire.lw-home', compact('imagen_perfil'));
+        $TablaPublicaciones = SpPublicacionesController::sp_get_publicaciones_usuarios($parametros);
+
+        return view('livewire.lw-home', compact('fotoPerfil', 'TablaPublicaciones'));
     }
 }

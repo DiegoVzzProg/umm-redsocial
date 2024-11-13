@@ -3,9 +3,11 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\ControllerGeneral;
-use App\Http\Controllers\ControllerLista;
+use App\Http\Controllers\ParamPublicacionesController;
+use App\Http\Controllers\ParamUsuariosController;
+use App\Http\Controllers\SpPublicacionesController;
+use App\Http\Controllers\SpUsuariosController;
 use App\Models\Seguidores;
-use App\Models\Usuario;
 use Livewire\Component;
 
 class LwPerfil extends Component
@@ -22,9 +24,7 @@ class LwPerfil extends Component
 
     public function render()
     {
-        $response = Usuario::where('id_usuario', $this->id_usuario)->first();
-
-        if ($this->id_usuario == session('id_usuario')) {
+        if ((int)session('id_usuario') == $this->id_usuario) {
             $foto_perfil = session('foto_perfil');
             $archivo_foto_portada = session('archivo_foto_portada');
             $nombre_completo = session('nombre_completo');
@@ -32,22 +32,46 @@ class LwPerfil extends Component
             $biografia = session('biografia');
             $matricula = session('matricula');
         } else {
-            $foto_perfil = $response->foto_perfil;
-            $archivo_foto_portada = $response->archivo_foto_portada;
-            $nombre_completo = $response->nombre_completo;
-            $usuario = $response->usuario;
-            $biografia = $response->biografia;
-            $matricula = $response->matricula;
+
+            $parametros = new ParamUsuariosController();
+            $parametros->p_usuario = '';
+            $parametros->id_usuario = $this->id_usuario;
+            $tablaUsuarios = SpUsuariosController::sp_buscar_usuario_x_valor_o_id_usuario($parametros);
+
+            if (ControllerGeneral::$mensaje != '') {
+                redirect()->route('inicio')->with('data', ['mensaje' => ControllerGeneral::$mensaje]);
+            }
+
+            $foto_perfil = $tablaUsuarios[0]['foto_perfil'];
+            $archivo_foto_portada = $tablaUsuarios[0]['archivo_foto_portada'];
+            $nombre_completo = $tablaUsuarios[0]['nombre_completo'];
+            $usuario = $tablaUsuarios[0]['usuario'];
+            $biografia = $tablaUsuarios[0]['biografia'];
+            $matricula = $tablaUsuarios[0]['matricula'];
         }
 
-        $estadisticas = ControllerLista::sp_obtener_estadisticas_usuario($this->id_usuario);
+        $parametros = new ParamUsuariosController();
+        $parametros->id_usuario = $this->id_usuario;
+        $estadisticas = SpUsuariosController::sp_obtener_estadisticas_usuario($parametros);
+
+        if (ControllerGeneral::$mensaje != '') {
+            redirect()->route('inicio')->with('data', ['mensaje' => ControllerGeneral::$mensaje]);
+        }
+
+        $parametros = new ParamPublicacionesController();
+        $parametros->p_id_usuario = $this->id_usuario;
+        $parametros->p_perfil = true;
+        $tablaPublicaciones = SpPublicacionesController::sp_get_publicaciones_usuarios($parametros);
+        if (ControllerGeneral::$mensaje != '') {
+            redirect()->route('inicio')->with('data', ['mensaje' => ControllerGeneral::$mensaje]);
+        }
 
         $responseSeguidores = Seguidores::where('id_seguidor', session('id_usuario'))
             ->where('id_seguido', $this->id_usuario)
             ->where('borrado', false)
             ->first();
 
-        return view('livewire.lw-perfil', compact('foto_perfil', 'usuario', 'estadisticas', 'biografia', 'nombre_completo', 'archivo_foto_portada', 'matricula', 'responseSeguidores'));
+        return view('livewire.lw-perfil', compact('foto_perfil', 'usuario', 'estadisticas', 'biografia', 'nombre_completo', 'archivo_foto_portada', 'matricula', 'responseSeguidores', 'tablaPublicaciones'));
     }
 
     public function AbrirFormulario()

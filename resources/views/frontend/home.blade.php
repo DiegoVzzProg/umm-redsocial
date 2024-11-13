@@ -15,6 +15,9 @@
 @endsection
 
 @section('content')
+    @if (session('data.mensaje'))
+        <x-alerta :mensaje="session('data.mensaje')" tipo="warning" />
+    @endif
     <div class="flex w-full h-[calc(100vh-120px)]">
         <livewire:lw-home />
         <livewire:lw-preview-perfil-usuario />

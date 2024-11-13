@@ -38,41 +38,18 @@ class ControllerGeneral extends Controller
         return round($numero, 1) . $sufijos[$index];
     }
 
-    public static function ObtenerFotoURL($filename)
+    public static function ObtenerFotoURL($filename, $carpeta)
     {
-        if (Storage::exists('usuarios_fotos/' . $filename)) {
+        if (Storage::exists($carpeta . '/' . $filename)) {
             $url = URL::temporarySignedRoute(
                 'photo.show',
-                now()->addMinutes(30),
-                ['filename' => $filename]
+                now()->addMinutes(5),
+                ['filename' => $filename, 'carpeta' => $carpeta]
             );
         } else {
             $url = '';
         }
         return $url;
-    }
-
-    public function ExecuteStoreProcedure($store, $parameters): mixed
-    {
-        try {
-            $response = DB::select(query: 'CALL ' . $store . '(?)', bindings: $parameters);
-            return $this->JsonToArray(json: $response);
-        } catch (Exception $e) {
-            return $this->JsonToArray(json: $this->CreateMessage(message: $e->getMessage(), status: 599, type: "error"));
-        }
-    }
-
-    protected function JsonToArray($json): mixed
-    {
-        return json_decode(json: json_encode(value: $json), associative: true);
-    }
-
-    protected function CreateMessage($message, $status, $type): JsonResponse
-    {
-        return response()->json(data: [
-            'type' => $type,
-            'message' => $message,
-        ], status: $status);
     }
 
     public static function GoToPerfil($id_usuario)
@@ -82,5 +59,25 @@ class ControllerGeneral extends Controller
         session()->put($uuid, $id_usuario_desencrypt);
 
         return redirect()->route('perfil.usuario', ['IdUsuarioParametro' => $uuid]);
+    }
+    public static $tipo = '';
+    public static $mensaje = '';
+
+    public static function ExecuteStoreProcedure($store, $parameters): mixed
+    {
+        try {
+            $parametros_enviar = '(' . implode(', ', array_fill(0, count($parameters), '?')) . ')';
+            $response = DB::select(query: 'CALL ' . $store . $parametros_enviar, bindings: $parameters);
+            return self::JsonToArray(json: $response);
+        } catch (Exception $e) {
+            self::$tipo = 'error';
+            self::$mensaje = $e->getMessage();
+            return [];
+        }
+    }
+
+    protected static function JsonToArray($json): mixed
+    {
+        return json_decode(json: json_encode(value: $json), associative: true);
     }
 }

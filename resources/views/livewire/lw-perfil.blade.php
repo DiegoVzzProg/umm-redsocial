@@ -1,10 +1,10 @@
-<section class="w-full max-w-screen-lg rounded">
+<section class="w-full max-w-screen-lg max-h-[calc(100vh-120px)] overflow-y-auto rounded app-quitar-scroll">
     <div class="flex flex-col w-full min-h-full gap-2">
         <div
             class="flex flex-col w-full bg-[#F3F4F5] h-screen rounded overflow-hidden max-h-96 max-[768px]:max-h-[484px] relative">
             @if ($archivo_foto_portada || $archivo_foto_portada != '')
                 <div class="flex w-full h-full max-h-48 max-[425px]:max-h-36 max-[375px]:max-h-32">
-                    <x-app-recurso-encrypt :filename="$archivo_foto_portada" :cssFormato="2" />
+                    <x-app-recurso-encrypt :filename="$archivo_foto_portada" :cssFormato="2" :carpeta="'usuarios_fotos'" />
                 </div>
             @else
                 <div class="flex w-full h-full max-h-48 max-[425px]:max-h-44 bg-[#495057]"></div>
@@ -14,16 +14,16 @@
                     <div class="flex flex-row gap-2">
                         <div class="w-full h-full rounded max-w-[85px] overflow-hidden relative transition-all">
                             @if ($foto_perfil || $foto_perfil != '')
-                                <x-app-recurso-encrypt :filename="$foto_perfil" />
+                                <x-app-recurso-encrypt :filename="$foto_perfil" :carpeta="'usuarios_fotos'" />
                             @else
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    fill="none" stroke="#ADB5BD" stroke-width="1" stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-square-rounded">
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
-                                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                                    <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                                 </svg>
                             @endif
                         </div>
@@ -56,7 +56,11 @@
                                     {{ $estadisticas[0]['sigues'] }}
                                 </p>
                                 <p class="text-[clamp(.7rem,3vw,.8rem)] font-semibold">
-                                    sigues
+                                    @if (((int) session('id_usuario')) == $id_usuario)
+                                        sigues
+                                    @else
+                                        sigue
+                                    @endif
                                 </p>
                             </div>
                             <div class="flex flex-col items-center">
@@ -130,16 +134,59 @@
                 <livewire:lw-component-text-publicacion bgColor="#e9ecef" />
             </div>
 
-            <div class="flex flex-col w-full font-medium">
+            <div class="w-full flex py-3 relative gap-[2em] flex-col">
                 <p>
                     Publicaciones
                 </p>
+                @for ($i = 0; $i < count($tablaPublicaciones); $i++)
+                    <div class="flex gap-3 min-h-[150px] max-h-[500px]">
+                        <span
+                            class="flex w-full max-w-[55px] min-w-[55px] object-cover h-full max-h-[55px] overflow-hidden rounded-full">
+                            @if ($tablaPublicaciones[$i]['foto_perfil'] || $tablaPublicaciones[$i]['foto_perfil'] != '')
+                                <x-app-recurso-encrypt :filename="$tablaPublicaciones[$i]['foto_perfil']" :carpeta="'usuarios_fotos'" />
+                            @else
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                    viewBox="0 0 24 24" fill="none" stroke="#ADB5BD" stroke-width="1"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+                                </svg>
+                            @endif
+                        </span>
+                        <div class="flex flex-col justify-between w-full border-b">
+                            <div class="flex flex-col gap-1 pb-1">
+                                <span class="flex items-center gap-1">
+                                    <p class="text-[clamp(.75rem,3vw,.9rem)] font-semibold">
+                                        {{ $tablaPublicaciones[$i]['nombre'] }}
+                                    </p>
+                                    <p class="text-[clamp(.75rem,3vw,.9rem)]">
+                                        {{ '@' . $tablaPublicaciones[$i]['usuario'] }}
+                                    </p>
+                                </span>
+                                <p class="text-[clamp(.75rem,3vw,.9rem)]">
+                                    {{ $tablaPublicaciones[$i]['contenido'] }}
+                                </p>
+                                <div class="w-full">
+                                    @if ($tablaPublicaciones[$i]['imagen'] || $tablaPublicaciones[$i]['imagen'] != '')
+                                        <x-app-recurso-encrypt :filename="$tablaPublicaciones[$i]['imagen']" :carpeta="'pub_imagenes'" />
+                                    @endif
+                                </div>
+                            </div>
+                            <p class="text-[clamp(.7rem,3vw,.8rem)] font-light pb-1">
+                                {{ date('d', strtotime($tablaPublicaciones[$i]['fecha_creacion'])) . ' de ' . date('F Y', strtotime($tablaPublicaciones[$i]['fecha_creacion'])) }}
+                            </p>
+                        </div>
+                    </div>
+                @endfor
             </div>
         </div>
     </div>
     @if (((int) session('id_usuario')) == $id_usuario && $abrir_formulario == true)
         <div
-            class="absolute top-0 left-0 flex flex-col w-full h-full p-2 bg-[rgba(0,0,0,.1)] flex items-center justify-center">
+            class="fixed top-0 left-0 flex flex-col w-full h-full p-2 bg-[rgba(0,0,0,.1)] flex items-center justify-center">
             <div
                 class="flex flex-col w-full p-5 gap-5 h-full max-w-screen-md bg-white max-h-[768px] rounded shadow overflow-y-auto">
                 <div

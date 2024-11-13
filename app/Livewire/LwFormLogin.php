@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\Usuario;
-use Exception;
+use App\Http\Controllers\ControllerGeneral;
+use App\Http\Controllers\ParamUsuariosController;
+use App\Http\Controllers\SpUsuariosController;
 use Livewire\Component;
-use Illuminate\Support\Str;
 
 class LwFormLogin extends Component
 {
@@ -38,28 +38,30 @@ class LwFormLogin extends Component
     {
         $this->validate();
 
-        try {
-            $usuario = Usuario::where('usuario', $this->usuario)->first();
+        $parametros = new ParamUsuariosController();
+        $parametros->p_email = $this->usuario;
+        $parametros->p_contraseña = $this->contraseña;
 
-            if ($usuario && $usuario->contraseña === $this->contraseña) {
+        $usuario = SpUsuariosController::sp_get_autenticacion_usuario($parametros);
 
-                session()->put('id_usuario', $usuario->id_usuario);
-                session()->put('foto_perfil', $usuario->foto_perfil);
-                session()->put('archivo_foto_portada', $usuario->archivo_foto_portada);
-                session()->put('usuario', '@' . $usuario->usuario);
-                session()->put('nombre_completo', trim("{$usuario->nombre} {$usuario->paterno} {$usuario->materno}"));
-                session()->put('biografia', $usuario->biografia);
-                session()->put('matricula', $usuario->matricula);
-
-                $this->contraseña = '';
-
-                return redirect()->route('inicio')->with('data', ['mensaje' => '']);
-            } else {
-
-                return redirect()->route('login')->with('data', ['mensaje' => 'Usuario y/o contraseña incorrecta']);
-            }
-        } catch (Exception $e) {
-            return redirect()->route('login')->with('data', ['mensaje' => $e->getMessage()]);
+        if (ControllerGeneral::$mensaje != '') {
+            return redirect()->route('login')->with('data', ['mensaje' => ControllerGeneral::$mensaje]);
         }
+        if (count($usuario) == 0) {
+            $mensaje = 'Usuario y/o contraseña incorrecta';
+            return redirect()->route('login')->with('data', ['mensaje' => $mensaje]);
+        }
+
+        $this->contraseña = '';
+
+        session()->put('id_usuario', $usuario[0]["id_usuario"]);
+        session()->put('foto_perfil', $usuario[0]["foto_perfil"]);
+        session()->put('archivo_foto_portada', $usuario[0]["archivo_foto_portada"]);
+        session()->put('usuario', '@' . $usuario[0]["usuario"]);
+        session()->put('nombre_completo', trim("{$usuario[0]["nombre"]} {$usuario[0]["paterno"]} {$usuario[0]["materno"]}"));
+        session()->put('biografia', $usuario[0]["biografia"]);
+        session()->put('matricula', $usuario[0]["matricula"]);
+
+        return redirect()->route('inicio');
     }
 }

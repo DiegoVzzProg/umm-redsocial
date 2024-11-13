@@ -17,7 +17,7 @@ class AppRecursoEncrypt extends Component
     public $photoUrl;
     public $css_formato;
     public $opcion_recurso;
-    public function __construct($filename, $opcion_recurso = 1, $cssFormato = 1)
+    public function __construct($filename, $opcion_recurso = 1, $cssFormato = 1, $carpeta = '')
     {
         $this->filename = $filename;
         $this->opcion_recurso = $opcion_recurso;
@@ -30,7 +30,7 @@ class AppRecursoEncrypt extends Component
                 $this->css_formato = 'object-cover';
                 break;
         }
-        $this->photoUrl = ControllerGeneral::ObtenerFotoURL($filename);
+        $this->photoUrl = ControllerGeneral::ObtenerFotoURL($filename, $carpeta);
     }
 
     /**

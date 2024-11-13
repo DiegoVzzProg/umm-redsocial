@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Http\Controllers\ControllerGeneral;
 use App\Http\Controllers\ControllerLista;
+use App\Http\Controllers\ParamUsuariosController;
+use App\Http\Controllers\SpUsuariosController;
 use App\Models\Usuario;
 use Livewire\Component;
 
@@ -19,7 +21,11 @@ class LwHeader extends Component
 
     public function BuscarUsuario()
     {
-        $this->usuarios = ControllerLista::fn_buscar_usuario_x_valor_o_id_usuario($this->txt_buscar_usuario, null);
+        $parametros = new ParamUsuariosController();
+        $parametros->p_usuario = $this->txt_buscar_usuario;
+        $parametros->id_usuario = 0;
+
+        $this->usuarios = SpUsuariosController::sp_buscar_usuario_x_valor_o_id_usuario($parametros);
     }
 
     public function GoToPerfil($id_usuario)

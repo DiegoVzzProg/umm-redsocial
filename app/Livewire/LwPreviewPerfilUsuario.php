@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Http\Controllers\ControllerGeneral;
 use App\Http\Controllers\ControllerLista;
+use App\Http\Controllers\ParamUsuariosController;
+use App\Http\Controllers\SpUsuariosController;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Crypt;
 use Livewire\Component;
@@ -19,7 +21,10 @@ class LwPreviewPerfilUsuario extends Component
 
         $id_usuario = session('id_usuario');
 
-        $estadisticas = ControllerLista::sp_obtener_estadisticas_usuario($id_usuario == null ? 0 : $id_usuario);
+        $parametros = new ParamUsuariosController();
+        $parametros->id_usuario = $id_usuario == null ? 0 : $id_usuario;
+        
+        $estadisticas = SpUsuariosController::sp_obtener_estadisticas_usuario($parametros);
 
         return view('livewire.lw-preview-perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario'));
     }

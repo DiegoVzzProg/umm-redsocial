@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view(view: 'frontend.home');
 })->name(name: 'inicio');
 
-Route::get('/perfil={IdUsuarioParametro}', function ($IdUsuarioParametro) {
+Route::get('/perfil/{IdUsuarioParametro}', function ($IdUsuarioParametro) {
     return view('frontend.perfil', compact('IdUsuarioParametro'));
 })->name(name: 'perfil.usuario');
 
@@ -19,8 +19,8 @@ Route::get('/configuracion', function () {
     return view('frontend.configuracion-usuario');
 })->name('configuracion');
 
-Route::get('/foto/{filename}', function ($filename) {
-    $path = storage_path('app/private/usuarios_fotos/' . $filename);
+Route::get('/foto/{filename}/{carpeta}', function ($filename, $carpeta) {
+    $path = storage_path('app/private/' . $carpeta . '/' . $filename);
 
     if (!file_exists($path)) {
         abort(404, 'Foto no encontrada');
