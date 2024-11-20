@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center justify-between w-full h-full max-h-[220px] pt-3 gap-2">
         <button type="button"
             class="flex w-full max-w-[120px] h-full max-h-[120px] overflow-hidden rounded-full justify-center items-center opacity-100 app-transition-all hover:opacity-80"
-            wire:click="GoToPerfil('{{ !session()->has('id_usuario') ? null : Crypt::encryptString(session('id_usuario')) }}')">
+            wire:click="GoToPerfil('{{ !session()->has('id_usuario') ? null : true }}','{{ !session()->has('id_usuario') ? null : Crypt::encryptString(session('id_usuario')) }}')">
             @if ($imagen_perfil || $imagen_perfil != '')
                 <x-app-recurso-encrypt :filename="$imagen_perfil" :carpeta="'usuarios_fotos'" />
             @else
@@ -21,41 +21,52 @@
                 {{ $usuario }}
             </p>
         </div>
-        @if (count($estadisticas) > 0)
-            <div class="grid w-full grid-cols-3 divide-x divide-[#343A40]">
-                <span class="flex flex-col items-center justify-center px-2">
-                    <p class="text-[.8rem] font-semibold text-[#404040]">
-                        {{ $estadisticas[0]['seguidores'] }}
-                    </p>
-                    <p class="text-[.8rem] font-normal">
-                        seguidores
-                    </p>
-                </span>
-                <span class="flex flex-col items-center justify-center px-2">
-                    <p class="text-[.8rem] font-semibold text-[#404040]">
-                        {{ $estadisticas[0]['sigues'] }}
-                    </p>
-                    <p class="text-[.8rem] font-normal">
-                        sigues
-                    </p>
-                </span>
-                <span class="flex flex-col items-center justify-center px-2">
-                    <p class="text-[.8rem] font-semibold text-[#404040]">
-                        {{ $estadisticas[0]['publicaciones'] }}
-                    </p>
-                    <p class="text-[.8rem] font-normal">
-                        publicaciones
-                    </p>
-                </span>
-            </div>
-        @endif
+
+        <div class="grid w-full grid-cols-3 divide-x divide-[#343A40]">
+            <span class="flex flex-col items-center justify-center px-2">
+                <p class="text-[.8rem] font-semibold text-[#404040]">
+                    {{ count($estadisticas) > 0 ? $estadisticas[0]['seguidores'] : 0 }}
+                </p>
+                <p class="text-[.8rem] font-normal">
+                    seguidores
+                </p>
+            </span>
+            <span class="flex flex-col items-center justify-center px-2">
+                <p class="text-[.8rem] font-semibold text-[#404040]">
+                    {{ count($estadisticas) > 0 ? $estadisticas[0]['sigues'] : 0 }}
+                </p>
+                <p class="text-[.8rem] font-normal">
+                    sigues
+                </p>
+            </span>
+            <span class="flex flex-col items-center justify-center px-2">
+                <p class="text-[.8rem] font-semibold text-[#404040]">
+                    {{ count($estadisticas) > 0 ? $estadisticas[0]['publicaciones'] : 0 }}
+                </p>
+                <p class="text-[.8rem] font-normal">
+                    publicaciones
+                </p>
+            </span>
+        </div>
+
     </div>
-    <div class="flex flex-col w-full h-screen px-2 pt-2 overflow-y-auto app-quitar-scroll">
+    <div class="flex flex-col gap-2 w-full h-screen px-2 pt-2 overflow-y-auto app-quitar-scroll">
         <h1 class="p-2 px-3 rounded bg-[#F8F9FA] font-light">
             Sugerencias de amistades
         </h1>
-        <div class="min-h-auto">
-
+        <div class="min-h-auto flex flex-col gap-2">
+            @for($i = 0; $i < count($sugerencias_amistades); $i++)
+                <button class="w-full flex items-center gap-2 px-3 rounded-md bg-[#f2f3f4] py-3"
+                    wire:click="GoToPerfil('{{!session()->has('id_usuario') ? null : true}}','{{ Crypt::encryptString($sugerencias_amistades[$i]['id_usuario']) }}')">
+                    <span class="w-full max-w-[44px] flex overflow-hidden rounded-full">
+                        <x-app-recurso-encrypt :filename="$sugerencias_amistades[$i]['foto_perfil']"
+                            :carpeta="'usuarios_fotos'" />
+                    </span>
+                    <p class="text-[.8rem] font-semibold">
+                        {{ '@' . $sugerencias_amistades[$i]['usuario'] }}
+                    </p>
+                </button>
+            @endfor
         </div>
     </div>
 </div>

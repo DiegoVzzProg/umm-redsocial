@@ -18,20 +18,19 @@ class LwPreviewPerfilUsuario extends Component
         $imagen_perfil = session('foto_perfil');
         $usuario = session('usuario');
 
-
         $id_usuario = session('id_usuario');
 
         $parametros = new ParamUsuariosController();
         $parametros->id_usuario = $id_usuario == null ? 0 : $id_usuario;
-        
-        $estadisticas = SpUsuariosController::sp_obtener_estadisticas_usuario($parametros);
 
-        return view('livewire.lw-preview-perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario'));
+        $estadisticas = SpUsuariosController::sp_obtener_estadisticas_usuario($parametros);
+        $sugerencias_amistades = SpUsuariosController::sp_get_sugerencias_amistad($parametros);
+        return view('livewire.lw-preview-perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario', 'sugerencias_amistades'));
     }
 
-    public function GoToPerfil($id_usuario)
+    public function GoToPerfil($validarUsuario, $id_usuario)
     {
-        if ($id_usuario)
+        if ($validarUsuario)
             ControllerGeneral::GoToPerfil($id_usuario);
         else
             return redirect()->route('login');

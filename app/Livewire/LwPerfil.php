@@ -24,7 +24,7 @@ class LwPerfil extends Component
 
     public function render()
     {
-        if ((int)session('id_usuario') == $this->id_usuario) {
+        if ((int) session('id_usuario') == $this->id_usuario) {
             $foto_perfil = session('foto_perfil');
             $archivo_foto_portada = session('archivo_foto_portada');
             $nombre_completo = session('nombre_completo');

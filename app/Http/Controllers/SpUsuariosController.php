@@ -26,4 +26,11 @@ class SpUsuariosController extends Controller
 
         return ControllerGeneral::ExecuteStoreProcedure(store: "sp_buscar_usuario_x_valor_o_id_usuario", parameters: $MySQlParam);
     }
+
+    public static function sp_get_sugerencias_amistad(ParamUsuariosController $parametros)
+    {
+        $MySQlParam = [$parametros->id_usuario];
+
+        return ControllerGeneral::ExecuteStoreProcedure(store: "sp_get_sugerencias_amistad", parameters: $MySQlParam);
+    }
 }
