@@ -23,9 +23,13 @@
         </section>
 
         <section class="bg-[#F8F9FA] w-full flex p-3 px-4 relative gap-[2em] flex-col">
+            @for ($i = 0; $i < count($TablaPublicacionesRecientes); $i++)
+                <x-app-publicacion-usuario fotoPerfil="{{ $TablaPublicacionesRecientes[$i]['foto_perfil'] }}"
+                    :fechaCreacion="$TablaPublicacionesRecientes[$i]['fecha_creacion']" :nombre="$TablaPublicacionesRecientes[$i]['nombre']" :usuario="$TablaPublicacionesRecientes[$i]['usuario']" :contenido="$TablaPublicacionesRecientes[$i]['contenido']" :imagen="$TablaPublicacionesRecientes[$i]['imagen']" />
+            @endfor
             @for ($i = 0; $i < count($TablaPublicaciones); $i++)
                 <x-app-publicacion-usuario fotoPerfil="{{ $TablaPublicaciones[$i]['foto_perfil'] }}" :fechaCreacion="$TablaPublicaciones[$i]['fecha_creacion']"
-                    :nombre="$TablaPublicaciones[$i]['nombre']" :usuario="$TablaPublicaciones[$i]['usuario']" :contenido="$TablaPublicaciones[$i]['usuario']" :imagen="$TablaPublicaciones[$i]['imagen']" />
+                    :nombre="$TablaPublicaciones[$i]['nombre']" :usuario="$TablaPublicaciones[$i]['usuario']" :contenido="$TablaPublicaciones[$i]['contenido']" :imagen="$TablaPublicaciones[$i]['imagen']" />
             @endfor
         </section>
     </article>

@@ -16,13 +16,6 @@ return new class extends Migration
             $table->unsignedInteger('id_seguidor'); // ID del usuario que sigue (referencia a id_usuario)
             $table->unsignedInteger('id_seguido'); // ID del usuario que es seguido (referencia a id_usuario)
             $table->timestamp('fecha')->useCurrent(); // Fecha en la que empezó a seguir
-        
-            // // Claves foráneas y relaciones
-            // $table->foreign('id_seguidor')->references('id_usuario')->on('usuario')->onDelete('cascade');
-            // $table->foreign('id_seguido')->references('id_usuario')->on('usuario')->onDelete('cascade');
-        
-            // // Asegura que un usuario no siga más de una vez a otro usuario
-            // $table->unique(['id_seguidor', 'id_seguido']);
         });
     }
 

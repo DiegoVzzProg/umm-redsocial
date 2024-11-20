@@ -20,7 +20,7 @@
             </div>
             <input type="text" name="usuario" autocomplete="off" wire:model.lazy="usuario"
                 class="bg-[#E9ECEF] w-full focus:placeholder:opacity-0 outline-none p-2 py-[15px] pe-[25px] text-[.9rem] font-normal"
-                placeholder="Usuario">
+                placeholder="Correo">
         </div>
         @error('usuario')
             <div class="alerta">{{ $message }}</div>
@@ -52,9 +52,9 @@
     </div>
 
     <div class="flex items-center w-full max-w-[400px] rounded-[8px] overflow-hidden">
-        <a href=""
+        <a href="{{ route('inicio') }}"
             class="bg-[#3498db] text-[white] app-transition-all md:opacity-[.7] text-center lg:opacity-[.7] hover:opacity-[1] outline-none text-[.9rem] font-normal w-full p-3">
-            Iniciar sesión con Office365
+            Regresar a inicio
         </a>
     </div>
 </div>
