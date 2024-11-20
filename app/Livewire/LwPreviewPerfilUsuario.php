@@ -25,6 +25,7 @@ class LwPreviewPerfilUsuario extends Component
 
         $estadisticas = SpUsuariosController::sp_obtener_estadisticas_usuario($parametros);
         $sugerencias_amistades = SpUsuariosController::sp_get_sugerencias_amistad($parametros);
+
         return view('livewire.lw-preview-perfil-usuario', compact('imagen_perfil', 'estadisticas', 'usuario', 'sugerencias_amistades'));
     }
 

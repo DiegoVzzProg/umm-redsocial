@@ -47,7 +47,7 @@ class ControllerGeneral extends Controller
                 ['filename' => $filename, 'carpeta' => $carpeta]
             );
         } else {
-            $url = '';
+            $url = null;
         }
         return $url;
     }

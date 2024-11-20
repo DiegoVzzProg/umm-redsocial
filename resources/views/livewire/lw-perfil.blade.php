@@ -2,7 +2,8 @@
     <div class="flex flex-col w-full min-h-full gap-2">
         <div
             class="flex flex-col w-full bg-[#F3F4F5] h-screen rounded overflow-hidden max-h-96 max-[768px]:max-h-[484px] relative">
-            @if ($archivo_foto_portada || $archivo_foto_portada != '')
+            @if (Storage::exists('usuarios_fotos/' . $archivo_foto_portada) &&
+                    ($archivo_foto_portada || $archivo_foto_portada != ''))
                 <div class="flex w-full h-full max-h-48 max-[425px]:max-h-36 max-[375px]:max-h-32">
                     <x-app-recurso-encrypt :filename="$archivo_foto_portada" :cssFormato="2" :carpeta="'usuarios_fotos'" />
                 </div>
@@ -13,7 +14,7 @@
                 <div class="flex max-[768px]:flex-col w-full rounded gap-2 max-[768px]:gap-4 justify-between">
                     <div class="flex flex-row gap-2">
                         <div class="w-full h-full rounded max-w-[85px] overflow-hidden relative transition-all">
-                            @if ($foto_perfil || $foto_perfil != '')
+                            @if (Storage::exists('usuarios_fotos/' . $foto_perfil) && ($foto_perfil || $foto_perfil != ''))
                                 <x-app-recurso-encrypt :filename="$foto_perfil" :carpeta="'usuarios_fotos'" />
                             @else
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"

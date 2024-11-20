@@ -21,11 +21,13 @@ class LwHeader extends Component
 
     public function BuscarUsuario()
     {
-        $parametros = new ParamUsuariosController();
-        $parametros->p_usuario = $this->txt_buscar_usuario;
-        $parametros->id_usuario = 0;
+        return redirect()->route('buscar.usuario');
+        //href="{{ route('buscar.usuario') }}"
+        // $parametros = new ParamUsuariosController();
+        // $parametros->p_usuario = $this->txt_buscar_usuario;
+        // $parametros->id_usuario = 0;
 
-        $this->usuarios = SpUsuariosController::sp_buscar_usuario_x_valor_o_id_usuario($parametros);
+        // $this->usuarios = SpUsuariosController::sp_buscar_usuario_x_valor_o_id_usuario($parametros);
     }
 
     public function GoToPerfil($id_usuario)

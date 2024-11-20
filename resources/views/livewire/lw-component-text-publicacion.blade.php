@@ -1,5 +1,5 @@
 <div class="flex flex-col items-end w-full gap-2">
-    <textarea name="" id="" rows="3"
+    <textarea name="" id="" rows="3" wire:model.lazy="text_publicacion"
         class="placeholder:text-[.9rem] text-[1rem] px-3 max-h-[120px] placeholder:opacity-50 resize-none overflow-y-auto app-quitar-scroll outline-none rounded w-full p-2"
         placeholder="¿En que estas pensando?" maxlength="150" style="background-color: {{ $bgColor }}"></textarea>
     <div class="flex justify-between w-full">
@@ -17,7 +17,7 @@
                     <path d="M19 16v6" />
                 </svg>
             </button>
-            <button class="opacity-50 hover:opacity-100 app-transition-all">
+            <button class="opacity-50 hover:opacity-100 app-transition-all max-[768px]:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-mood-happy">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -26,7 +26,7 @@
                 </svg>
             </button>
         </div>
-        <button
+        <button wire:click="AgregarPublicacion"
             class="p-2 px-3 bg-[#039be5] text-white rounded flex gap-2 opacity-50 hover:opacity-100 app-transition-all text-[clamp(.8rem,3vw,.85rem)]">
             <svg xmlns="http://www.w3.org/2000/svg" class="translate-y-[1px]" viewBox="0 0 24 24" width="18"
                 height="18">
